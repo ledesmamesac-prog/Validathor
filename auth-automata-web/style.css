@@ -12,9 +12,21 @@
 }
 
 * { box-sizing: border-box; }
-html, body { height: 100%; margin: 0; background: radial-gradient(1200px 600px at 50% 0%, #111827 20%, var(--bg) 60%); color: var(--text); font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji","Segoe UI Emoji"; }
+html, body {
+  height: 100%;
+  margin: 0;
+  background: radial-gradient(1200px 600px at 50% 0%, #111827 20%, var(--bg) 60%);
+  color: var(--text);
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji","Segoe UI Emoji";
+}
 
-.app { display: flex; gap: 16px; padding: 20px; max-width: 1200px; margin: 0 auto; }
+.app {
+  display: flex;
+  gap: 16px;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
 
 .left, .right {
   background: linear-gradient(to bottom, #0b1120, #0a0f1a);
@@ -23,6 +35,7 @@ html, body { height: 100%; margin: 0; background: radial-gradient(1200px 600px a
   padding: 16px;
   position: relative;
 }
+
 .left { flex: 0 0 420px; display: flex; flex-direction: column; }
 .right { flex: 1; min-height: 520px; }
 
@@ -50,7 +63,7 @@ h1 { margin: 0 0 4px 0; font-size: 20px; font-weight: 700; }
 .hidden { display: none; }
 
 .svg-wrap { position: relative; border-radius: 12px; border: 1px solid rgba(255,255,255,0.08); background: radial-gradient(1200px 600px at 50% 0%, #0c1222, #0a0f1a); overflow: hidden; }
-svg { width: 100%; height: 420px; display: block; }
+svg { width: 100%; height: 100%; display: block; }
 
 /* Leyenda */
 .legend { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; margin: 10px 2px 6px; color: var(--muted); font-size: 12px; }
@@ -106,6 +119,36 @@ svg { width: 100%; height: 420px; display: block; }
 .tooltip { position: fixed; z-index: 9999; background: rgba(9,15,26,0.95); color: #dbeafe; border: 1px solid rgba(255,255,255,0.12); padding: 6px 8px; font-size: 12px; border-radius: 8px; max-width: 260px; pointer-events: none; box-shadow: 0 8px 24px rgba(0,0,0,0.35); }
 .tooltip.hidden { opacity: 0; transform: translateY(2px); transition: opacity .12s ease, transform .12s ease; }
 .tooltip:not(.hidden) { opacity: 1; transform: translateY(0); transition: opacity .12s ease, transform .12s ease; }
+
+/* Botón repositorio (esquina inferior derecha) */
+.repo-button {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  width: 42px;
+  height: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(12,20,38,0.85);
+  color: #dbeafe;
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(2,6,23,0.6);
+  text-decoration: none;
+  transition: transform .12s ease, background .12s ease, box-shadow .12s ease;
+  z-index: 9999;
+}
+.repo-button:hover {
+  transform: translateY(-3px);
+  background: linear-gradient(90deg, rgba(37,99,235,0.12), rgba(37,99,235,0.08));
+  box-shadow: 0 10px 28px rgba(37,99,235,0.12);
+  color: #e6f0ff;
+}
+.repo-button:focus {
+  outline: 2px solid rgba(37,99,235,0.28);
+  outline-offset: 3px;
+}
 
 /* Responsive */
 @media (max-width: 980px) {
