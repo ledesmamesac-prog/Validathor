@@ -121,37 +121,53 @@ svg { width: 100%; height: 420px; display: block; }
 .tooltip.hidden { opacity: 0; transform: translateY(2px); transition: opacity .12s ease, transform .12s ease; }
 .tooltip:not(.hidden) { opacity: 1; transform: translateY(0); transition: opacity .12s ease, transform .12s ease; }
 
-/* Botón repositorio (esquina inferior derecha) - FIXED and non-intrusive */
 .repo-button {
-  position: fixed;
-  right: 16px;
-  bottom: 16px;
-  width: 42px;
-  height: 42px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(12,20,38,0.85);
-  color: #dbeafe;
-  border: 1px solid rgba(255,255,255,0.06);
-  border-radius: 10px;
-  box-shadow: 0 6px 18px rgba(2,6,23,0.6);
-  text-decoration: none;
-  transition: transform .12s ease, background .12s ease, box-shadow .12s ease, opacity .12s ease;
-  z-index: 9999;
-  pointer-events: auto; /* ensure it responds to clicks but doesn't block other UI interactions */
+  position: fixed !important;
+  right: 16px !important;
+  bottom: 16px !important;
+  width: 42px !important;
+  height: 42px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: rgba(12,20,38,0.85) !important;
+  color: #dbeafe !important;
+  border: 1px solid rgba(255,255,255,0.06) !important;
+  border-radius: 10px !important;
+  box-shadow: 0 6px 18px rgba(2,6,23,0.6) !important;
+  text-decoration: none !important;
+  transition: transform .12s ease, background .12s ease, box-shadow .12s ease, opacity .12s ease !important;
+  z-index: 999999 !important; /* aún más alto por si hay overlays */
+  pointer-events: auto !important;
+  opacity: 0.98 !important;
 }
 
-/* Slight hover/focus affordances */
-.repo-button:hover {
-  transform: translateY(-3px);
-  background: linear-gradient(90deg, rgba(37,99,235,0.12), rgba(37,99,235,0.08));
-  box-shadow: 0 10px 28px rgba(37,99,235,0.12);
-  color: #e6f0ff;
+/* Forzar tamaño del SVG interno para evitar que sea escalado por reglas externas */
+.repo-button svg,
+.repo-button svg * {
+  width: 20px !important;
+  height: 20px !important;
+  max-width: 20px !important;
+  max-height: 20px !important;
+  display: block !important;
+  fill: currentColor !important;
 }
-.repo-button:focus {
-  outline: 2px solid rgba(37,99,235,0.28);
-  outline-offset: 3px;
+
+/* Forzar que el rectángulo de fondo no sea reemplazado / ni el anchor crezca */
+.repo-button > svg { vertical-align: middle !important; }
+
+/* Hover / focus (mantener accesibilidad) */
+.repo-button:hover { transform: translateY(-3px) !important; opacity: 1 !important; }
+.repo-button:focus { outline: 2px solid rgba(37,99,235,0.28) !important; outline-offset: 3px !important; }
+
+/* Ajustes responsive */
+@media (max-width: 640px) {
+  .repo-button { width: 36px !important; height: 36px !important; right: 12px !important; bottom: 12px !important; }
+  .repo-button svg,
+  .repo-button svg * { width: 16px !important; height: 16px !important; }
+}
+@media (max-width: 420px) {
+  .repo-button { display: none !important; } /* opcional: ocultar en pantallas muy pequeñas */
 }
 
 /* On small devices, shrink the button and avoid covering important UI: */
